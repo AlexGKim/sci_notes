@@ -1,0 +1,82 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb,amsmath}
+\usepackage{hyperref}
+%SetFonts
+
+%SetFonts
+
+
+\title{Deciphering SUGAR}
+\author{Alex Kim}
+%\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\section{The Model}
+\url{https://arxiv.org/pdf/1909.11239.pdf}
+
+For supernova $i$, Equations 22-25
+\begin{align*}
+M_i &= M_0(t,\lambda) + \sum_j h_{ij} \alpha_j(t,\lambda) + A_{V,i} \gamma+ \Delta M_{i, grey}
+\end{align*}
+Note that $\gamma$ is used in place of $ f(\lambda, R_V)$.
+
+In our analysis we don't treat the extinction separately.
+\begin{align*}
+M_i &= M_0(t,\lambda) + \sum_j h_{ij} \alpha_j(t,\lambda) + \Delta M_{i, grey}
+\end{align*}
+but we are setting $\alpha_1$, $\alpha_2$ to be time independent, as dust would be.
+
+\section{Degeneracies in the Model}
+\subsection{$h$ and $\alpha$}
+There is the invariance  between $h$ and $\alpha$.  Introducing $c_j$
+\begin{align*}
+ h_{ij} &\rightarrow  h_{ij} c_j\\
+ \alpha_j  & \rightarrow  \alpha_j/c_j.
+\end{align*}
+This degeneracy is fixed by making each $\alpha_j$ a unit vector.
+
+An alternative way to fix this degeneracy is to set $c_j = 1/\text{s.d.}(h_{xj})$.
+
+Neither of the above solutions fix the $\pm$ sign.  A solution is for each $j$
+identify the $h_{ij}$ that has the highest signal-to-noise, and if it is reasonable
+assign it to be positive (or negative).
+
+
+
+\subsection{$h$ and $M_0$}
+There is the invariance  between $h$ and $M_0$.  Introducing $c_j$
+\begin{align*}
+ h_{ij} &\rightarrow  h_{ij} + c_j\\
+ M_0 & \rightarrow  M_0 - c_j \alpha_j.
+\end{align*}
+This degeneracy is fixed by setting $c_j = -\langle h_{xj} \rangle$.
+
+\subsection{$h$ and $\Delta M$}
+This is a special case of the  invariance  between $h$ and $M_0$.
+\begin{align*}
+ \Delta M_{i, grey} &\rightarrow  \Delta M_{i, grey} + c\\
+ M_0 & \rightarrow  M_0 - c
+\end{align*}
+This degeneracy is fixed by setting $c = -\langle \Delta M \rangle$.
+
+\subsection{$\Delta M$ and $\alpha$}
+There is the invariance  between the grey term and $\alpha$.  Introducing $c_j$
+\begin{align*}
+ \Delta M_{i, grey} &\rightarrow \Delta M_{i, grey}  + \sum_j h_{ij} c_j  \\
+ \alpha_j  & \rightarrow  \alpha_j  - c_j.
+\end{align*}
+For physical reasons we want $\Delta M_{i, grey}$ to be uncorrelated with the $h_{ij}$.
+This is achieved by 
+\begin{equation}
+c = [\text{cov}(h)]^{-1} \text{cov}(h,\Delta M_{grey}).
+\end{equation}
+
+
+
+\end{document}  
